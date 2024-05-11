@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Todos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mt-5 mb-4">Your Todos</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Description</th>
+            <th>Target Date</th>
+            <th>Is Done?</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Thymeleaf의 반복문을 사용하여 todo 목록 반복 -->
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.description}">Description</td>
+            <td th:text="${todo.targetDate}">Target Date</td>
+            <td th:text="${todo.done ? 'Yes' : 'No'}">Is Done?</td>
+            <td><a th:href="@{/delete-todo(id=${todo.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="@{/update-todo(id=${todo.id})}" class="btn btn-primary">Update</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/add-todo}" class="btn btn-success">Add Todo</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/js/all.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
